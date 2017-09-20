@@ -1,5 +1,4 @@
 /*
- * WeightedCollection.java
  * Copyright 2007 (c) Tom Parker <thpr@users.sourceforge.net>
  *  Copyright 2006 (C) Aaron Divinsky <boomer70@yahoo.com>
  * 
@@ -446,7 +445,7 @@ public class WeightedCollection<E> extends AbstractCollection<E>
 	@Override
 	public String toString()
 	{
-		return "WeightedCollection: " + theData.toString();
+		return "WeightedCollection: " + theData;
 	}
 
 	/**
@@ -567,7 +566,7 @@ public class WeightedCollection<E> extends AbstractCollection<E>
 		@Override
 		public String toString()
 		{
-			return theElement + " (" + theWeight + ")";
+			return theElement + " (" + theWeight + ')';
 		}
 	}
 

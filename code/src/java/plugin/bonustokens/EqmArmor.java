@@ -1,5 +1,4 @@
 /*
- * EqmArmor.java
  * Copyright 2002 (C) Greg Bingleman <byngl@hotmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -45,7 +44,6 @@ public final class EqmArmor extends MultiTagBonusObj
 	/**
 	 * Get by index, an individual armour equipment attribute that may be bonused.
 	 * @param tagNumber the index of the equipment attribute.
-	 * @see pcgen.core.bonus.MultiTagBonusObj#getBonusTag(int)
 	 * @return The equipment attribute.
 	 */
 	@Override

@@ -36,8 +36,12 @@ import pcgen.gui2.util.PrettyIntegerFormat;
 import pcgen.system.LanguageBundle;
 import pcgen.util.chooser.ChooserFactory;
 
-public class StatApplication
+public final class StatApplication
 {
+
+	private StatApplication()
+	{
+	}
 
 	//
 	// Ask user to select a stat to increment. This can happen before skill

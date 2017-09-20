@@ -1,5 +1,4 @@
 /*
- * EquipmentMigration.java
  * Copyright 2013 (C) James Dempsey <jdempsey@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -36,6 +35,12 @@ import pcgen.core.system.MigrationRule.ObjectType;
 public final class EquipmentMigration
 {
 	private static Map<int[], List<MigrationRule>> equipChangesForVer = new HashMap<>();
+
+
+
+	private EquipmentMigration()
+	{
+	}
 
 	/**
 	 * Find the new equipment key to replace the provided one.

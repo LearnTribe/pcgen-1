@@ -1,5 +1,4 @@
 /*
- * CampaignSourceEntry.java
  * Copyright 2003 (C) David Hibbs <sage_sam@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -174,7 +173,7 @@ public class CampaignSourceEntry implements SourceEntry
 		}
 		
 		// Check if include/exclude items were present
-		int pipePos = value.indexOf("|");
+		int pipePos = value.indexOf('|');
 
 		CampaignSourceEntry cse;
 
@@ -400,7 +399,7 @@ public class CampaignSourceEntry implements SourceEntry
 		boolean hasKeyOnly = false;
 		List<String> catKeyList = new ArrayList<>();
 		String target = inExString.substring(8);
-		if (target == null || target.length() == 0)
+		if (target == null || target.isEmpty())
 		{
 			Logging.errorPrint("Must Specify Items after :");
 			return null;

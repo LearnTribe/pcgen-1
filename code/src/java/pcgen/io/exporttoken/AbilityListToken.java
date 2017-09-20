@@ -1,5 +1,4 @@
 /*
- * AbilityListToken.java
  * Copyright 2006 (C) James Dempsey
  *
  * This library is free software; you can redistribute it and/or
@@ -111,8 +110,8 @@ public class AbilityListToken extends Token
 		// If we haven't cached some of the processign data, then do so, this is so that 
 		// if the Output Sheet loops over this token we don't process one-off stuff more than 
 		// once
-		if (lastPC != pc || !aCategory.equals(lastCategory)
-			|| lastPCSerial != pc.getSerial() || !tokenString.equals(lastType))
+		if ((lastPC != pc) || !aCategory.equals(lastCategory)
+				|| (lastPCSerial != pc.getSerial()) || !tokenString.equals(lastType))
 		{
 			abilityMap = getAbilityList(pc, aCategory);
 			lastPC = pc;
@@ -131,7 +130,7 @@ public class AbilityListToken extends Token
 			final String typeStr = aTok.nextToken();
 
 			int typeInd = typeStr.indexOf("TYPE=");
-			if (typeInd != -1 && typeStr.length() > 5)
+			if ((typeInd != -1) && (typeStr.length() > 5))
 			{
 				if (typeInd > 0)
 				{
@@ -144,7 +143,7 @@ public class AbilityListToken extends Token
 			}
 			
 			int aspectInd = typeStr.indexOf("ASPECT=");
-			if (aspectInd != -1 && typeStr.length() > 7)
+			if ((aspectInd != -1) && (typeStr.length() > 7))
 			{
 				aspect = typeStr.substring(aspectInd + 7);
 			}

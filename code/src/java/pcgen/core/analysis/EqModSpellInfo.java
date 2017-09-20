@@ -28,9 +28,13 @@ import pcgen.core.EquipmentModifier;
 import pcgen.core.spell.Spell;
 import pcgen.util.Delta;
 
-public class EqModSpellInfo
+public final class EqModSpellInfo
 {
 	private static final String s_CHARGES = "CHARGES";
+
+	private EqModSpellInfo()
+	{
+	}
 
 	public static String getSpellInfoString(final String listEntry,
 			final String desiredInfo)

@@ -104,7 +104,7 @@ public class InfoCharacterDetails
 	 * for displaying.
 	 * Made it final as it is called from constructor.
 	 */
-	private final void setStatText()
+	private void setStatText()
 	{
 		new Renderer(getCombatant()).start();
 	}
@@ -114,7 +114,7 @@ public class InfoCharacterDetails
 	 * @param cbt
 	 * @param aPane
 	 */
-	private void setStatText(Combatant cbt, JTextPane aPane)
+	private static void setStatText(Combatant cbt, JTextPane aPane)
 	{
 		aPane.setEditorKit(aPane.getEditorKitForContentType("text/html"));
 		String htmlString = cbt.toHtmlString();

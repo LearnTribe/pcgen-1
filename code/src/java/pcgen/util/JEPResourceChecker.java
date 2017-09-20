@@ -1,5 +1,4 @@
 /*
- * JEPResourceChecker.java
  * Copyright 2003 (C) Greg Bingleman <byngl@hotmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -36,6 +35,10 @@ public final class JEPResourceChecker
 		//optimize StringBuilder initial size (0 should be right length. Hopefully we don't get an error. :)
 		resourceBuffer = new StringBuilder(0);
 		checkResource();
+	}
+
+	private JEPResourceChecker()
+	{
 	}
 
 	/**

@@ -32,10 +32,6 @@ import pcgen.rules.context.LoadContext;
 import pcgen.rules.persistence.TokenLibrary;
 import pcgen.util.Logging;
 
-/**
- * {@code Bonus}
- *
- */
 public final class Bonus
 {
 	static final String BONUS_UNDEFINED = "*UNDEFINED";
@@ -210,7 +206,7 @@ public final class Bonus
 		if (!val.isValid())
 		{
 			Logging.errorPrint("Could not create bonusObj for:" + bonusString
-					+ " since Formula " + bValue + " is not valid: " + val.toString());
+					+ " since Formula " + bValue + " is not valid: " + val);
 			return null;
 		}
 

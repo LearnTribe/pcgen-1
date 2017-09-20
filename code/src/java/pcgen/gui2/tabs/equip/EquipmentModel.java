@@ -24,7 +24,6 @@ import java.awt.Font;
 import java.awt.Rectangle;
 import java.util.HashMap;
 import java.util.Map;
-import java.awt.FontMetrics;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -56,7 +55,6 @@ import pcgen.gui2.util.JTreeTable;
 /**
  * The parent model for the selected panel. Maps the various equipment sets for
  * a character.
- *
  */
 public class EquipmentModel implements ListListener<EquipmentSetFacade>, ReferenceListener<EquipmentSetFacade>,
 		TableModelListener
@@ -91,11 +89,7 @@ public class EquipmentModel implements ListListener<EquipmentSetFacade>, Referen
 
 	public static void initializeTreeTable(JTreeTable treeTable)
 	{
-		Font curFont = treeTable.getFont();
-		FontMetrics ftMetrics = treeTable.getFontMetrics(curFont);
-		int ftHeight = ftMetrics.getHeight();
-		treeTable.getTree().setRowHeight(ftHeight);
-		
+		treeTable.getTree().setRowHeight(0);
 		treeTable.setFocusable(false);
 		treeTable.getTree().putClientProperty("JTree.lineStyle", "Horizontal");
 		normFont = treeTable.getFont();
@@ -210,7 +204,7 @@ public class EquipmentModel implements ListListener<EquipmentSetFacade>, Referen
 					{
 						if (treeTable.getRowHeight(row) != bounds.height)
 						{
-							//treeTable.setRowHeight(row, bounds.height);
+							treeTable.setRowHeight(row, bounds.height);
 						}
 					}
 				}

@@ -1,5 +1,4 @@
 /*
- * LstUtils.java
  * Copyright 2003 (C) PCGen team
  *
  * This library is free software; you can redistribute it and/or
@@ -39,6 +38,10 @@ public class LstUtils
 	public static final String PIPE = "|"; //$NON-NLS-1$
 	/** Constant representing the comma "," character */
 	public static final String COMMA = ","; //$NON-NLS-1$
+
+	private LstUtils()
+	{
+	}
 
 	/**
 	 * Checks a LST token to see if it's deprecated

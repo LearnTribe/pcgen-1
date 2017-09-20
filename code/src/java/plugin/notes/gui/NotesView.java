@@ -110,7 +110,7 @@ import gmgen.gui.FlippingSplitPane;
 import gmgen.gui.ImageFileChooserPreview;
 import gmgen.util.LogReceiver;
 import gmgen.util.LogUtilities;
-import gmgen.util.MiscUtilities;
+import org.apache.commons.io.FileUtils;
 import plugin.notes.NotesPlugin;
 
 /**
@@ -1014,7 +1014,7 @@ public class NotesView extends JPanel
 						if (!content)
 						{
 							elem.getParentElement();
-							ExtendedHTMLEditorKit.removeTag(editor, elem, true);
+							ExtendedHTMLEditorKit.removeTag(editor, elem);
 							editor.setCaretPosition(sOffset - 1);
 							return;
 						}
@@ -1220,7 +1220,7 @@ public class NotesView extends JPanel
 		newButton.setEnabled(false);
 		newButton.addActionListener(new java.awt.event.ActionListener()
 		{
-            @Override
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt)
 			{
 				newButtonActionPerformed();
@@ -1596,7 +1596,7 @@ public class NotesView extends JPanel
 
 				if (!image.exists())
 				{
-					MiscUtilities.copy(newImage, image);
+					FileUtils.copyFile(newImage, image);
 				}
 			}
 		}
@@ -1641,7 +1641,7 @@ public class NotesView extends JPanel
 				ExtendedHTMLEditorKit.getListItemParent(htmlDoc
 					.getCharacterElement(editor.getCaretPosition()));
 		h.getParentElement();
-		ExtendedHTMLEditorKit.removeTag(editor, h, true);
+		ExtendedHTMLEditorKit.removeTag(editor, h);
 	}
 
 	//GEN-LAST:event_saveButtonActionPerformed
@@ -1992,7 +1992,7 @@ public class NotesView extends JPanel
 
 						if (!isImageFile(destFile) || !destFile.exists())
 						{
-							MiscUtilities.copy(newFile, destFile);
+							FileUtils.copyFile(newFile, destFile);
 						}
 
 						editor.setCaretPosition(editor.viewToModel(dtde
@@ -2099,7 +2099,7 @@ public class NotesView extends JPanel
 		 * @param owner the owner of the message being logged.
 		 * @param message the message to log.
 		 */
-        @Override
+		@Override
 		public void logMessage(String owner, String message)
 		{
 			if (log == null)
@@ -2116,17 +2116,6 @@ public class NotesView extends JPanel
 			node.appendText("<br>"+ Constants.LINE_SEPARATOR+"<b>"
 				+ dateFmt.format(Calendar.getInstance().getTime()) + "</b> "
 				+ message);
-		}
-
-		/**
-		 * Logs a message not associated with a specific owner.
-		 *
-		 * @param message the message to log.
-		 */
-        @Override
-		public void logMessage(String message)
-		{
-			logMessage("Misc", message);
 		}
 
 		private NotesTreeNode getChildNode(String name, NotesTreeNode parentNode)

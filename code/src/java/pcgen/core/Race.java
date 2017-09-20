@@ -1,5 +1,4 @@
 /*
- * Race.java
  * Copyright 2001 (C) Bryan McRoberts <merton_monk@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -47,7 +46,7 @@ public final class Race extends PObject implements RaceFacade, ChooseDriver
 	{
 		List<Integer> hda = getListFor(ListKey.HITDICE_ADVANCEMENT);
 		return hda == null
-				|| Integer.MAX_VALUE == hda.get(hda.size() - 1).intValue();
+				|| hda.get(hda.size() - 1).intValue() == Integer.MAX_VALUE;
 	}
 
 	/**

@@ -1,5 +1,4 @@
 /*
- * SpellMigration.java
  * Copyright 2016 (C) Andrew Maitland <drew0500@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -36,6 +35,12 @@ import pcgen.core.system.MigrationRule.ObjectType;
 public final class SpellMigration
 {
 	private static Map<int[], List<MigrationRule>> spellChangesForVer = new HashMap<>();
+
+
+
+	private SpellMigration()
+	{
+	}
 
 	/**
 	 * Find the new spell key to replace the provided one.

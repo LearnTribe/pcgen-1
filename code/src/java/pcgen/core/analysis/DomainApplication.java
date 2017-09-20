@@ -42,8 +42,12 @@ import pcgen.core.character.CharacterSpell;
 import pcgen.core.prereq.PrereqHandler;
 import pcgen.core.spell.Spell;
 
-public class DomainApplication
+public final class DomainApplication
 {
+	private DomainApplication()
+	{
+	}
+
 	/**
 	 * Sets the locked flag on a PC
 	 * 

@@ -1,5 +1,4 @@
 /*
- * CombatantHasBeenUpdatedMessage.java
  * Copyright James Dempsey, 2014
  *
  * This library is free software; you can redistribute it and/or
@@ -45,11 +44,6 @@ public class CombatantHasBeenUpdatedMessage extends PCGenMessage
 	{
 		super(source);
 		this.combatant = combatant;
-	}
-
-	public Combatant getCombatant()
-	{
-		return combatant;
 	}
 
 }

@@ -1,5 +1,4 @@
 /*
- *
  * To change the template for this generated file go to
  * Window - Preferences - Java - Code Generation - Code and Comments
  */
@@ -314,8 +313,8 @@ public abstract class AbstractCharacterTestCase extends PCGenTestCase
 			UserSelection.getInstance(), UserSelection.getInstance());
 	}
 
-	protected CNAbility pcgenFinalize(Ability a, String string,
-	                                  PlayerCharacter pc, AbilityCategory cat)
+	protected CNAbility finalizeTest(Ability a, String string,
+	                                 PlayerCharacter pc, AbilityCategory cat)
 	{
 		return applyAbility(pc, cat, a, string);
 	}

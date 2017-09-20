@@ -1,5 +1,4 @@
 /*
- * EqToken.java
  * Copyright 2003 (C) Devon Jones <soulcatcher@evilsoft.org>
  *
  * This library is free software; you can redistribute it and/or
@@ -245,7 +244,7 @@ public class EqToken extends Token
 							aTok));
 				 
 				// Starting EQ.%.NAME.MAGIC,befTrue,aftTrue,befFalse,aftFalse treatment
-				if (!"".equals(bFilter))
+				if (bFilter != null && !bFilter.isEmpty())
 				{
 					aTok = new StringTokenizer(bFilter, ".");
 

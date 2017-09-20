@@ -37,9 +37,13 @@ import pcgen.core.prereq.Prerequisite;
 import pcgen.core.spell.Spell;
 import pcgen.util.Delta;
 
-public class EqModCost
+public final class EqModCost
 {
 	private static final String s_CHARGES = "CHARGES";
+
+	private EqModCost()
+	{
+	}
 
 	public static BigDecimal addItemCosts(EquipmentModifier eqMod,
 			final PlayerCharacter aPC, final String bonusType, final int qty,

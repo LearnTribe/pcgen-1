@@ -32,8 +32,12 @@ import pcgen.core.bonus.BonusObj;
 import pcgen.core.prereq.PrereqHandler;
 import pcgen.util.Logging;
 
-public class BonusCalc
+public final class BonusCalc
 {
+
+	private BonusCalc()
+	{
+	}
 
 	/**
 	 * Gets the bonuses to a given stat.

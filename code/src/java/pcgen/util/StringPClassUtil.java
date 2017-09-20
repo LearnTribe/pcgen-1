@@ -1,5 +1,4 @@
 /*
- * StringPClassUtil.java
  * Missing License Header, Copyright 2016 (C) Andrew Maitland <amaitland@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -118,6 +117,10 @@ public class StringPClassUtil
 		stringMap.put(SubstitutionClass.class, "CLASS");
 		
 		catClassMap.put("ABILITY", AbilityCategory.class);
+	}
+
+	private StringPClassUtil()
+	{
 	}
 
 	public static Class<? extends Loadable> getClassFor(String key)

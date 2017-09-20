@@ -106,7 +106,6 @@ import pcgen.util.enumeration.Tab;
 /**
  * A character tab providing the user with the ability to buy and sell
  * equipment.
- *
  */
 @SuppressWarnings("serial")
 public class PurchaseInfoTab extends FlippingSplitPane implements CharacterInfoTab
@@ -398,7 +397,7 @@ public class PurchaseInfoTab extends FlippingSplitPane implements CharacterInfoT
 		models.get(CurrencyLabelHandler.class).install();
 		models.get(BuyPopupMenuHandler.class).install();
 		models.get(SellPopupMenuHandler.class).install();
-		models.get(AllowDebtAction.class).install();;
+		models.get(AllowDebtAction.class).install();
 	}
 
 	@Override
@@ -425,7 +424,7 @@ public class PurchaseInfoTab extends FlippingSplitPane implements CharacterInfoT
 		int row = table.rowAtPoint(e.getPoint());
 		if (!table.isRowSelected(row))
 		{
-			if ((0 <= row) && (table.getRowCount() > row))
+			if ((row >= 0) && (table.getRowCount() > row))
 			{
 				table.setRowSelectionInterval(row, row);
 			}
@@ -818,7 +817,7 @@ public class PurchaseInfoTab extends FlippingSplitPane implements CharacterInfoT
 				{
 					sb.append(character.getInfoFactory().getHTMLInfo(equip));
 				}
-				text = "<html>" + sb.toString() + "</html>"; //$NON-NLS-1$ //$NON-NLS-2$
+				text = "<html>" + sb + "</html>"; //$NON-NLS-1$ //$NON-NLS-2$
 				infoPane.setText(text);
 			}
 		}
@@ -1203,7 +1202,7 @@ public class PurchaseInfoTab extends FlippingSplitPane implements CharacterInfoT
 				return null;
 			}
 
-			EquipmentFacade[] equipArray = data.toArray(new EquipmentFacade[0]);
+			EquipmentFacade[] equipArray = data.toArray(new EquipmentFacade[data.size()]);
 			return new EquipmentSelection(equipArray);
 		}
 
@@ -1276,7 +1275,7 @@ public class PurchaseInfoTab extends FlippingSplitPane implements CharacterInfoT
 				return null;
 			}
 
-			EquipmentFacade[] equipArray = data.toArray(new EquipmentFacade[0]);
+			EquipmentFacade[] equipArray = data.toArray(new EquipmentFacade[data.size()]);
 			return new EquipmentSelection(equipArray);
 		}
 

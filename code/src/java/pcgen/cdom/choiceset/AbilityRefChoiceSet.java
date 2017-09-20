@@ -100,7 +100,6 @@ public class AbilityRefChoiceSet implements
 	public AbilityRefChoiceSet(CDOMSingleRef<AbilityCategory> cat,
 			Collection<? extends CDOMReference<Ability>> arCollection, Nature nat)
 	{
-		super();
 		if (arCollection == null)
 		{
 			throw new IllegalArgumentException(
@@ -258,7 +257,7 @@ public class AbilityRefChoiceSet implements
 				availableList.retainAll(set);
 			}
 		}
-		else if (nameRoot != null && !nameRoot.isEmpty())
+		else if ((nameRoot != null) && !nameRoot.isEmpty())
 		{
 			for (int n = availableList.size() - 1; n >= 0; --n)
 			{

@@ -1,5 +1,4 @@
 /*
- * ValuesToken.java
  * Copyright 2006 (C) Aaron Divinsky <boomer70@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -102,7 +101,7 @@ public class ValuesToken extends AbstractNonEmptyToken<KitTable> implements
 				catch (PersistenceLayerException e)
 				{
 					return new ParseResult.Fail("Failure in token: " + key
-							+ " " + e.getMessage(), context);
+							+ ' ' + e.getMessage(), context);
 				}
 			}
 			if (!sep.hasNext())

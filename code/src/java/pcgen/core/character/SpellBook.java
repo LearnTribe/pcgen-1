@@ -60,7 +60,6 @@ public class SpellBook implements Cloneable
 	 */
 	public SpellBook(String name, int type)
 	{
-		super();
 
 		this.name = name;
 		this.type = type;
@@ -262,7 +261,7 @@ public class SpellBook implements Cloneable
 	 * @see java.lang.Object#clone()
 	 */
 	@Override
-	public Object clone()
+	public SpellBook clone()
 	{
 		SpellBook aClone = null;
 		try

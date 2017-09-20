@@ -1,5 +1,4 @@
 /*
- * Delta.java
  * Copyright 2001 (C) B. K. Oxley (binkley) <binkley@alumni.rice.edu>
  *
  * This library is free software; you can redistribute it and/or
@@ -46,21 +45,6 @@ public final class Delta
 		}
 
 		return Integer.decode(s);
-	}
-
-	/**
-	 * parse the Double
-	 * @param s
-	 * @return double
-	 */
-	public static double parseDouble(String s)
-	{
-		if (s.charAt(0) == '+')
-		{
-			s = s.substring(1);
-		}
-
-		return Double.parseDouble(s);
 	}
 
 	/**

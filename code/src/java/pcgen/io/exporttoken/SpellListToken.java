@@ -1,5 +1,4 @@
 /*
- * SpellListToken.java
  * Copyright 2004 (C) James Dempsey <jdempsey@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -45,7 +44,7 @@ public abstract class SpellListToken extends Token
 	/**
 	 * {@code SpellListTokenParams} is ...
 	 */
-	protected final static class SpellListTokenParams
+	protected static final class SpellListTokenParams
 	{
 		private int classNum = 0;
 		private int level = 0;

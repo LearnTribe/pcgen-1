@@ -20,14 +20,12 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.EventObject;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.SystemColor;
 
 import javax.swing.CellRendererPane;
 import javax.swing.JComponent;
@@ -77,25 +75,6 @@ public class JTreeTable extends JTableEx
 	private TreeTableCellRenderer tree;
 	private TreeTableModelAdapter adapter;
 
-	static
-	{
-		/*
-		JTreeTable's event handling assumes bad things about
-		mouse pressed/released that are not true on MacOS X.
-		For example, one gets NPEs thrown when the mouse is
-		hit because the event manager is waiting for released
-		and one never gets the release.
-		It turns out that the MetalLAF handles this happily and
-		thus we can use that to get appropriate line styles,
-		without knackering Mac support.
-		Fix done by LeeAnn Rucker, formerly at Apple for Javasoft.
-		Added to pcgen by Scott Ellsworth
-		 */
-//		UIManager.put("TreeTableUI", "javax.swing.plaf.metal.MetalTreeUI"); //$NON-NLS-1$ //$NON-NLS-2$
-//		UIManager.put("Tree.leftChildIndent", Integer.valueOf(3)); //$NON-NLS-1$
-//		UIManager.put("Tree.rightChildIndent", Integer.valueOf(8)); //$NON-NLS-1$
-	}
-
 	public JTreeTable()
 	{
 		this(null);
@@ -134,10 +113,7 @@ public class JTreeTable extends JTableEx
 		if (tree.getRowHeight() < 1)
 		{
 			// Metal looks better like this.
-			Font curFont = super.getFont();
-			FontMetrics ftMetrics = super.getFontMetrics(curFont);
-			int ftHeight = ftMetrics.getHeight();
-			setRowHeight(ftHeight);
+			setRowHeight(18);
 		}
 		else
 		{
@@ -145,7 +121,6 @@ public class JTreeTable extends JTableEx
 			// we'd better all be using the same one!
 			setRowHeight(tree.getRowHeight());
 		}
-
 		setForeground(SystemColor.text);
 	}
 

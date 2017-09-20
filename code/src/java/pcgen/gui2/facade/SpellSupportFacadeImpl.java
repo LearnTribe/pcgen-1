@@ -1,5 +1,4 @@
 /**
- * SpellSupportFacadeImpl.java
  * Copyright James Dempsey, 2011
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.gui2.facade;
 
@@ -765,7 +762,7 @@ public class SpellSupportFacadeImpl implements SpellSupportFacade,
 
 		String bString = SourceFormat.getFormattedString(aClass,
 		Globals.getSourceDisplay(), true);
-		if (bString.length() > 0)
+		if (!bString.isEmpty())
 		{
 			b.appendLineBreak();
 			b.appendI18nElement("in_source", bString); //$NON-NLS-1$ 
@@ -1076,7 +1073,7 @@ public class SpellSupportFacadeImpl implements SpellSupportFacade,
 				pc.delSpell(spellInfo, (PCClass) spell.getSpellcastingClass(),
 					bookName);
 
-		if (errorMsg.length() > 0)
+		if (!errorMsg.isEmpty())
 		{
 			delegate.showErrorMessage(Constants.APPLICATION_NAME, errorMsg);
 			ShowMessageDelegate.showMessageDialog(errorMsg,

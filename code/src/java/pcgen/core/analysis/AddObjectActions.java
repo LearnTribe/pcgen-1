@@ -27,8 +27,12 @@ import pcgen.cdom.enumeration.Region;
 import pcgen.core.Kit;
 import pcgen.core.PlayerCharacter;
 
-public class AddObjectActions
+public final class AddObjectActions
 {
+
+	private AddObjectActions()
+	{
+	}
 
 	public static void doBaseChecks(CDOMObject po, final PlayerCharacter aPC)
 	{

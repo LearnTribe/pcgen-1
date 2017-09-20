@@ -42,8 +42,12 @@ import pcgen.core.utils.CoreUtility;
 import pcgen.util.Logging;
 import pcgen.util.enumeration.View;
 
-public class SkillRankControl
+public final class SkillRankControl
 {
+
+	private SkillRankControl()
+	{
+	}
 
 	/**
 	 * Returns the total ranks of a skill rank + bonus ranks (racial, class, etc

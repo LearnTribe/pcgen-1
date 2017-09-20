@@ -32,8 +32,12 @@ import pcgen.system.LanguageBundle;
 import pcgen.util.SignedInteger;
 import pcgen.util.chooser.ChooserFactory;
 
-public class EquipmentChoiceDriver
+public final class EquipmentChoiceDriver
 {
+	private EquipmentChoiceDriver()
+	{
+	}
+
 	/**
 	 * @param pool
 	 * @param parent

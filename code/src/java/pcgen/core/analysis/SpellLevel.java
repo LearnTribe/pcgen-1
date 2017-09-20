@@ -37,12 +37,16 @@ import pcgen.core.SettingsHandler;
 import pcgen.core.prereq.PrereqHandler;
 import pcgen.core.spell.Spell;
 
-public class SpellLevel
+public final class SpellLevel
 {
 
+	private SpellLevel()
+	{
+	}
+
 	public static boolean levelForKeyContains(Spell sp,
-			List<? extends CDOMList<Spell>> lists, int levelMatch,
-			PlayerCharacter aPC)
+	                                          List<? extends CDOMList<Spell>> lists, int levelMatch,
+	                                          PlayerCharacter aPC)
 	{
 		if (lists == null || aPC == null)
 		{

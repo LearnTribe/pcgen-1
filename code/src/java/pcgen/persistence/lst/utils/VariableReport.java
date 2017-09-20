@@ -1,5 +1,4 @@
 /*
- * VariableReport.java
  * Copyright James Dempsey, 2013
  *
  * This library is free software; you can redistribute it and/or
@@ -445,7 +444,7 @@ public class VariableReport
 			builder.append(definingFile);
 			builder.append(", use=");
 			builder.append(use);
-			builder.append("]");
+			builder.append(']');
 			return builder.toString();
 		}
 

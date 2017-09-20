@@ -32,12 +32,16 @@ import pcgen.persistence.lst.SourceEntry;
 import pcgen.persistence.lst.utils.DeferredLine;
 import pcgen.util.Logging;
 
-public class SubstitutionLevelSupport
+public final class SubstitutionLevelSupport
 {
 
+	private SubstitutionLevelSupport()
+	{
+	}
+
 	private static boolean levelArrayQualifies(int level,
-			final PlayerCharacter pc, final String aLine,
-			final SourceEntry tempSource, CDOMObject source)
+	                                           final PlayerCharacter pc, final String aLine,
+	                                           final SourceEntry tempSource, CDOMObject source)
 	{
 		final PCClassLoader classLoader = new PCClassLoader(); 
 		PCClass dummyClass = new PCClass();   
@@ -71,7 +75,7 @@ public class SubstitutionLevelSupport
 		{
 			String aLine = line.lstLine;
 			final int modLevel = Integer.parseInt(aLine.substring(0, aLine
-					.indexOf("\t")));
+					.indexOf('\t')));
 	
 			if (aLevel == modLevel)
 			{
@@ -102,7 +106,7 @@ public class SubstitutionLevelSupport
 		{
 			String aLine = line.lstLine;
 			final int modLevel = Integer.parseInt(aLine.substring(0, aLine
-					.indexOf("\t")));
+					.indexOf('\t')));
 	
 			if (level == modLevel)
 			{

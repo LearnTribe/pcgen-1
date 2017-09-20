@@ -31,8 +31,12 @@ import pcgen.core.AbilityUtilities;
 import pcgen.core.PlayerCharacter;
 import pcgen.core.Skill;
 
-public class QualifiedName
+public final class QualifiedName
 {
+
+	private QualifiedName()
+	{
+	}
 
 	/**
 	 * This method generates a name for this Ability which includes any choices

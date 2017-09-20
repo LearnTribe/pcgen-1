@@ -1,5 +1,4 @@
 /*
- * CustomData.java
  * Copyright 2002 (C) Greg Bingleman <byngl@hotmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -340,7 +339,7 @@ public final class CustomData
 				for ( Integer statValue : pbStatCosts.keySet() )
 				{
 					final PointBuyCost pbc = pbStatCosts.get(statValue);
-					bw.write("STAT:" + statValue.toString() + "\t\tCOST:" + Integer.toString(pbc.getBuyCost()));
+					bw.write("STAT:" + statValue + "\t\tCOST:" + Integer.toString(pbc.getBuyCost()));
 					final int iCount = pbc.getPrerequisiteCount();
 					if (iCount != 0)
 					{

@@ -1,5 +1,4 @@
 /*
- * DelegatingDataSet.java
  * Copyright 2014 Connor Petty <cpmeister@users.sourceforge.net>
  * 
  * This library is free software; you can redistribute it and/or
@@ -58,7 +57,6 @@ import pcgen.facade.util.MapFacade;
  * delegate layer, upon closing a character, the CFI can sever connections
  * between the DelegatingDataSet and the actual DataSetFacade thus preventing an
  * memory leaks that could occur from an outside event listener.
- *
  */
 public class DelegatingDataSet implements DataSetFacade
 {

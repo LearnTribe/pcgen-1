@@ -1,5 +1,4 @@
 /*
- * Globals.java
  * Copyright 2001 (C) Bryan McRoberts <merton_monk@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -31,6 +30,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 import javax.swing.JFrame;
 
@@ -640,7 +640,7 @@ public final class Globals
 			typeList = aEq.typeList();
 		}
 
-		final List<String> resizeTypeList = SettingsHandler.getGame().getResizableTypeList();
+		final List<String> resizeTypeList = SettingsHandler.getGame().getResizableTypeList().stream().map(String::toUpperCase).collect(Collectors.toList());
 		return typeList.stream().map(String::toUpperCase).anyMatch(resizeTypeList::contains);
 	}
 
@@ -811,8 +811,8 @@ public final class Globals
 			final String s = aList.get(idx);
 			if (s.contains("%"))
 			{
-				final String beforeString = s.substring(0, s.indexOf("%"));
-				final String afterString = s.substring(s.indexOf("%") + 1);
+				final String beforeString = s.substring(0, s.indexOf('%'));
+				final String afterString = s.substring(s.indexOf('%') + 1);
 				cmdArray[idx] = beforeString + fileName + afterString;
 			}
 			else

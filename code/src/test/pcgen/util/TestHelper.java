@@ -1,5 +1,4 @@
 /**
- * TestHelper.java
  * Copyright 2005 (c) Andrew Wilson <nuance@sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -35,7 +34,7 @@ import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
-import org.apache.commons.lang3.SystemUtils;
+
 import pcgen.base.lang.UnreachableError;
 import pcgen.cdom.base.CDOMObject;
 import pcgen.cdom.enumeration.ListKey;
@@ -79,6 +78,9 @@ import pcgen.system.ConfigurationSettings;
 import pcgen.system.Main;
 import pcgen.system.PCGenTask;
 import pcgen.system.PropertyContextFactory;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.SystemUtils;
 import plugin.lsttokens.testsupport.BuildUtilities;
 
 /**
@@ -574,7 +576,7 @@ public class TestHelper
 		while (tok.hasMoreTokens())
 		{
 			String line = tok.nextToken();
-			if (line.trim().length() > 0)
+			if (!StringUtils.isBlank(line))
 			{
 				System.out.println("Processing line:'" + line + "'.");
 				reconstClass =

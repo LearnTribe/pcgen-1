@@ -1,5 +1,4 @@
 /*
- * GameMode.java
  * Copyright 2001 (C) Greg Bingleman <byngl@hotmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -594,12 +593,7 @@ public final class GameMode implements Comparable<Object>, GameModeFacade
 	 */
 	public void addLevelInfo(final String xpTableName, final LevelInfo levInfo)
 	{
-		XPTable xpTable = xpTableInfo.get(xpTableName);
-		if (xpTable == null)
-		{
-			xpTable = new XPTable(xpTableName);
-			xpTableInfo.put(xpTableName, xpTable);
-		}
+		XPTable xpTable = xpTableInfo.computeIfAbsent(xpTableName, XPTable::new);
 		xpTable.addLevelInfo(levInfo.getLevelString(), levInfo);
 	}
 
@@ -1208,7 +1202,7 @@ public final class GameMode implements Comparable<Object>, GameModeFacade
 	 */
 	public void setXPAwards(final String aString)
 	{
-		String sTmp = "";;
+		String sTmp = "";
 		StringTokenizer aTok = new StringTokenizer(aString, "|", false);
 		
 		while (aTok.hasMoreTokens())
@@ -1871,7 +1865,7 @@ public final class GameMode implements Comparable<Object>, GameModeFacade
 				final PointBuyCost pbc = pointBuyStatCosts.get(statValue);
 				if (pbc.qualifies(pc, null))
 				{
-					lastStat = statValue.intValue();
+					lastStat = statValue;
 				}
 			}
 		}
@@ -2072,12 +2066,7 @@ public final class GameMode implements Comparable<Object>, GameModeFacade
 	 */
 	private boolean isPurchaseStatModeAllowed()
 	{
-		if ((pointBuyStatCosts == null) || (pointBuyStatCosts.isEmpty()))
-		{
-			return false;
-		}
-
-		return true;
+		return !((pointBuyStatCosts == null) || (pointBuyStatCosts.isEmpty()));
 	}
 
 	/**
@@ -2425,15 +2414,13 @@ public final class GameMode implements Comparable<Object>, GameModeFacade
 			String aString = aTok.nextToken();
 			// in case there is training\leading whitespace after the comma split
 			aString = aString.trim();
-			String minValue;
-			String maxValue;
 
 			try
 			{
 			if (aString.contains("MIN="))
 				{
 					String[] t = aString.split("MIN=");
-					minValue = t[1];
+					String minValue = t[1];
 					int die = Integer.parseInt(minValue);
 					setMinDieSize(die);
 					list.add(die);
@@ -2441,7 +2428,7 @@ public final class GameMode implements Comparable<Object>, GameModeFacade
 				else if (aString.contains("MAX="))
 				{
 					String[] t = aString.split("MAX=");
-					maxValue = t[1];
+					String maxValue = t[1];
 					int die = Integer.parseInt(maxValue);
 					setMaxDieSize(die);
 					list.add(die);
@@ -2469,7 +2456,6 @@ public final class GameMode implements Comparable<Object>, GameModeFacade
 		{
 			dieSizes[i] = list.get(i);
 		}
-		list = null;
 		this.setDieSizes(dieSizes);
 	}
 
@@ -2638,14 +2624,9 @@ public final class GameMode implements Comparable<Object>, GameModeFacade
 
 	private AbstractReferenceContext getRefContext()
 	{
-		if (SettingsHandler.inputUnconstructedMessages())
-		{
-			return new TrackingReferenceContext();
-		}
-		else
-		{
-			return new RuntimeReferenceContext();
-		}
+		return SettingsHandler.inputUnconstructedMessages() ?
+				new TrackingReferenceContext() :
+				new RuntimeReferenceContext();
 	}
 
 
@@ -2693,12 +2674,10 @@ public final class GameMode implements Comparable<Object>, GameModeFacade
 
 	public void addHiddenType(Class<?> cl, String s)
 	{
-		Set<String> set = hiddenTypes.get(cl);
-		if (set == null)
-		{
-			set = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
-			hiddenTypes.put(cl, set);
-		}
+		Set<String> set = hiddenTypes.computeIfAbsent(
+				cl,
+				k -> new TreeSet<>(String.CASE_INSENSITIVE_ORDER)
+		);
 		set.add(s);
 	}
 
@@ -3023,14 +3002,9 @@ public final class GameMode implements Comparable<Object>, GameModeFacade
 	@Override
 	public String getHeightUnit()
 	{
-		if ("ftin".equals(getUnitSet().getHeightUnit()))
-		{
-			return "inches";
-		}
-		else
-		{
-			return getUnitSet().getHeightUnit();
-		}
+		return "ftin".equals(getUnitSet().getHeightUnit()) ?
+				"inches" :
+				getUnitSet().getHeightUnit();
 	}
 
 	@Override

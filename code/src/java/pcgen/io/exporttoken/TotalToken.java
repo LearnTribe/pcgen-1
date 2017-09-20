@@ -1,5 +1,4 @@
 /*
- * TotalToken.java
  * Copyright 2003 (C) Devon Jones <soulcatcher@evilsoft.org>
  *
  * This library is free software; you can redistribute it and/or
@@ -121,7 +120,7 @@ public class TotalToken extends Token
 			default:
 				Logging
 					.errorPrint("Unknown load constant detected in TokenTotal.getLoadToken, the constant was "
-						+ load + ".");
+						+ load + '.');
 
 				return "Unknown";
 		}
@@ -134,7 +133,7 @@ public class TotalToken extends Token
 	 */
 	public static String getValueToken(PlayerCharacter pc)
 	{
-		return BigDecimalHelper.trimZeros(pc.totalValue()) + " "
+		return BigDecimalHelper.trimZeros(pc.totalValue()) + ' '
 			+ SettingsHandler.getGame().getCurrencyDisplay();
 	}
 

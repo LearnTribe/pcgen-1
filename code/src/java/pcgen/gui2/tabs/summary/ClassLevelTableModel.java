@@ -23,8 +23,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.Font;
-import java.awt.FontMetrics;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.HashMap;
@@ -100,11 +98,7 @@ public class ClassLevelTableModel extends AbstractTableModel
 		classLevelTable.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		classLevelTable.setFocusable(false);
 		classLevelTable.setCellSelectionEnabled(false);
-		
-		Font curFont = classLevelTable.getFont();
-		FontMetrics ftMetrics = classLevelTable.getFontMetrics(curFont);
-		int ftHeight = ftMetrics.getHeight();
-		classLevelTable.setRowHeight(ftHeight);
+		classLevelTable.setRowHeight(20);
 	}
 
 	public void install()
@@ -185,7 +179,7 @@ public class ClassLevelTableModel extends AbstractTableModel
 				String classKey = c.getKeyName();
 				if (finalLevelMap.get(classKey) == rowIndex)
 				{
-					return c.toString() + " (" + character.getClassLevel(c) + ")";
+					return c + " (" + character.getClassLevel(c) + ")";
 				}
 				return c.toString();
 			default:

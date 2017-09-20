@@ -38,9 +38,8 @@ import pcgen.cdom.format.table.TableFormatManager;
 /**
  * This is a Lookup function for finding items in a DataTable.
  * 
- * This function requires 3 arguments: (1) The Table Name (2) The Value to be
- * looked up in the first column (3) The Column name of the result to be
- * returned
+ * This function requires 3 arguments: (1) The Table (2) The Value to be looked up in the
+ * first column (3) The Column of the result to be returned
  */
 public class LookupFunction implements Function
 {
@@ -48,7 +47,6 @@ public class LookupFunction implements Function
 	/**
 	 * A constant referring to the TableColumn Class.
 	 */
-	@SuppressWarnings("rawtypes")
 	private static final Class<TableColumn> COLUMN_CLASS = TableColumn.class;
 
 	/**
@@ -76,40 +74,46 @@ public class LookupFunction implements Function
 		if (argCount != 3)
 		{
 			semantics.setInvalid("Function " + getFunctionName()
-				+ " received incorrect # of arguments, expected: 3 got "
-				+ args.length + ' ' + Arrays.asList(args));
+				+ " received incorrect # of arguments, expected: 3 got " + args.length
+				+ ' ' + Arrays.asList(args));
 			return null;
 		}
 
-		//Table name node (must be a DataTable)
+		//Table node (must be a DataTable)
 		@SuppressWarnings("PMD.PrematureDeclaration")
-		Object tableFormat = args[0].jjtAccept(visitor,
+		Object format = args[0].jjtAccept(visitor,
 			semantics.getWith(FormulaSemantics.ASSERTED, DATATABLE_CLASS));
 		if (!semantics.isValid())
 		{
 			return null;
 		}
-		if (!(tableFormat instanceof TableFormatManager))
+		if (!(format instanceof TableFormatManager))
 		{
-			semantics.setInvalid(
-				"Parse Error: Invalid Object: " + tableFormat.getClass()
-					+ " found in location requiring a " + "TableFormatManager");
+			semantics.setInvalid("Parse Error: Invalid Object: " + format.getClass()
+				+ " found in location requiring a TableFormatManager");
 			return null;
 		}
-		@SuppressWarnings("unchecked")
-		TableFormatManager tableFormatManager =
-				(TableFormatManager) tableFormat;
-
-		//Lookup value (at this point we don't know the format - only at runtime)
+		TableFormatManager tableFormatManager = (TableFormatManager) format;
 		FormatManager<?> lookupFormat = tableFormatManager.getLookupFormat();
-		args[1].jjtAccept(visitor,
+
+		//Lookup value (at this point we enforce based on the Table Format)
+		@SuppressWarnings("PMD.PrematureDeclaration")
+		FormatManager<?> luFormat = (FormatManager<?>) args[1].jjtAccept(visitor,
 			semantics.getWith(FormulaSemantics.ASSERTED, lookupFormat.getManagedClass()));
 		if (!semantics.isValid())
 		{
 			return null;
 		}
+		if (!lookupFormat.equals(luFormat))
+		{
+			semantics.setInvalid(
+				"Parse Error: Invalid Lookup Object: " + luFormat.getIdentifierType()
+					+ " found in location the Table Format says is a "
+					+ lookupFormat.getIdentifierType());
+			return null;
+		}
 
-		//Result Column Name (must be a String)
+		//Result Column
 		@SuppressWarnings("PMD.PrematureDeclaration")
 		Object resultColumn = args[2].jjtAccept(visitor,
 			semantics.getWith(FormulaSemantics.ASSERTED, COLUMN_CLASS));
@@ -120,17 +124,16 @@ public class LookupFunction implements Function
 		if (!(resultColumn instanceof ColumnFormatManager))
 		{
 			semantics.setInvalid("Parse Error: Invalid Result Column Name: "
-				+ resultColumn.getClass()
-				+ " found in location requiring a Column");
+				+ resultColumn.getClass() + " found in location requiring a Column");
 			return null;
 		}
 		ColumnFormatManager<?> cf = (ColumnFormatManager<?>) resultColumn;
 		FormatManager<?> rf = tableFormatManager.getResultFormat();
 		if (!rf.equals(cf.getComponentManager()))
 		{
-			semantics.setInvalid("Parse Error: Invalid Result Column Type: "
-				+ resultColumn.getClass()
-				+ " found in table that does not contain that type");
+			semantics.setInvalid(
+				"Parse Error: Invalid Result Column Type: " + resultColumn.getClass()
+					+ " found in table that does not contain that type");
 			return null;
 		}
 		return rf;
@@ -140,7 +143,6 @@ public class LookupFunction implements Function
 	public Object evaluate(EvaluateVisitor visitor, Node[] args,
 		EvaluationManager manager)
 	{
-		//Table name node (must be a Table)
 		DataTable dataTable = (DataTable) args[0].jjtAccept(visitor,
 			manager.getWith(EvaluationManager.ASSERTED, DATATABLE_CLASS));
 
@@ -151,7 +153,7 @@ public class LookupFunction implements Function
 		Object lookupValue = args[1].jjtAccept(visitor,
 			manager.getWith(EvaluationManager.ASSERTED, lookupFormat.getManagedClass()));
 
-		//Result Column Name (must be a tableColumn)
+		//Result Column
 		TableColumn column = (TableColumn) args[2].jjtAccept(visitor,
 			manager.getWith(EvaluationManager.ASSERTED, COLUMN_CLASS));
 
@@ -169,9 +171,8 @@ public class LookupFunction implements Function
 		{
 			FormatManager<?> fmt = column.getFormatManager();
 			System.out.println("Lookup called on invalid item: '" + lookupValue
-				+ "' is not present in the first row of table '"
-				+ dataTable.getName() + "' assuming default for "
-				+ fmt.getIdentifierType());
+				+ "' is not present in the first row of table '" + dataTable.getName()
+				+ "' assuming default for " + fmt.getIdentifierType());
 			FormulaManager fm = manager.get(EvaluationManager.FMANAGER);
 			return fm.getDefault(fmt.getManagedClass());
 		}
@@ -179,15 +180,22 @@ public class LookupFunction implements Function
 	}
 
 	@Override
-	public void getDependencies(DependencyVisitor visitor,
-		DependencyManager manager, Node[] args)
+	public void getDependencies(DependencyVisitor visitor, DependencyManager manager,
+		Node[] args)
 	{
+		//Table name node (must be a Table)
 		args[0].jjtAccept(visitor,
 			manager.getWith(DependencyManager.ASSERTED, DATATABLE_CLASS));
 
-		//TODO a Semantics Check can tell what this is
+		//TODO a Semantics Check can tell what this is?
 		args[1].jjtAccept(visitor, manager.getWith(DependencyManager.ASSERTED, null));
 
+		/*
+		 * TODO Is there a way to check if the supplied column is part of this table? Not
+		 * really. If directly included (e.g. via get), it would show up in
+		 * ManagerKey.REFERENCES, but it could easily be a variable, so there are no
+		 * guarantees here, and right now, not sure of ROI.
+		 */
 		args[2].jjtAccept(visitor,
 			manager.getWith(DependencyManager.ASSERTED, COLUMN_CLASS));
 	}

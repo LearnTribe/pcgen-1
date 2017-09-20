@@ -1,5 +1,4 @@
 /*
- * AbilityMigration.java
  * Copyright 2013 (C) James Dempsey <jdempsey@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -38,6 +37,12 @@ public final class AbilityMigration
 
 	private static Map<int[], List<MigrationRule>> abilityChangesForVer = new HashMap<>();
 
+
+
+	private AbilityMigration()
+	{
+	}
+
 	/**
 	 * Find the new ability key to replace the provided one.
 	 * 
@@ -62,8 +67,8 @@ public final class AbilityMigration
 			if (rule.getOldKey().equalsIgnoreCase(abilityKey)
 				&& rule.getOldCategory().equalsIgnoreCase(abilityCategory))
 			{
-				return new CategorisedKey(rule.getNewCategory() == null
-					? abilityCategory : rule.getNewCategory(), rule.getNewKey());
+				return new CategorisedKey((rule.getNewCategory() == null)
+						? abilityCategory : rule.getNewCategory(), rule.getNewKey());
 			}
 		}
 		return new CategorisedKey(abilityCategory, abilityKey);

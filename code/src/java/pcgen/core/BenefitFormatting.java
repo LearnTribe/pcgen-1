@@ -1,5 +1,4 @@
 /*
- * BenefitFormatting.java
  * Missing License Header, Copyright 2016 (C) Andrew Maitland <amaitland@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -27,6 +26,10 @@ import pcgen.util.Logging;
 
 public class BenefitFormatting
 {
+
+	private BenefitFormatting()
+	{
+	}
 
 	public static String getBenefits(PlayerCharacter aPC, List<? extends Object> objList)
 	{

@@ -24,8 +24,12 @@ import pcgen.cdom.base.CDOMObject;
 import pcgen.core.PlayerCharacter;
 import pcgen.core.bonus.BonusObj;
 
-public class BonusActivation
+public final class BonusActivation
 {
+
+	private BonusActivation()
+	{
+	}
 
 	public static void deactivateBonuses(CDOMObject po, PlayerCharacter aPC)
 	{

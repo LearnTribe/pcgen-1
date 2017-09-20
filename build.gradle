@@ -26,7 +26,7 @@ plugins {
     id "de.undercouch.download" version "3.2.0"
     id 'edu.sc.seis.launch4j' version '2.3.0'
     id 'com.github.ben-manes.versions' version '0.15.0'
-    id 'nebula.lint' version '7.8.0'
+    id 'nebula.lint' version '7.9.5'
     id "com.dorongold.task-tree" version "1.3"
 }
 
@@ -43,7 +43,11 @@ ext {
     binDir = "code/bin"
 }
 
-mainClassName = 'pcgen.system.Main'
+//The gradle plugin for netbeans sets the 'mainClass' property instead of 'mainClassName'
+//if other IDEs set different properties when trying to execute a given class
+//feel free to add them here.
+mainClassName = project.hasProperty('mainClass') ? mainClass : 'pcgen.system.Main';
+
 applicationDistribution.from('plugins') {
     into "plugins"
 }
@@ -74,6 +78,10 @@ repositories {
     ivy {
         name "fileRepo"
         url 'http://librepo.pcgen.org'
+    }
+        ivy {
+        name "tempRepo"
+        url 'http://52.90.171.70:8080/librepo/'
     }
     jcenter()
 }
@@ -136,22 +144,28 @@ compileJava {
 
 dependencies {
     compile group: 'cobra', name: 'cobra', version:'0.98.4-pcgen'
-
     compile group: 'commons-io', name: 'commons-io', version:'2.5'
-    compile group: 'rhino', name: 'js', version:'1.7R2'
-    compile group: 'org.springframework', name: 'spring-core', version:'4.3.9.RELEASE'
-    compile group: 'org.springframework', name: 'spring-beans', version:'4.3.9.RELEASE'
+    compile group: 'org.springframework', name: 'spring-core', version:'4.3.10.RELEASE'
+    compile group: 'org.springframework', name: 'spring-beans', version:'4.3.10.RELEASE'
     compile group: 'skinlf', name: 'skinlf', version: '1.2.3'
     compile group: 'org.apache.commons', name: 'commons-lang3', version:'3.6'
     compile group: 'org.apache.xmlgraphics', name: 'fop', version:'2.2'
-    compile group: 'org.apache.pdfbox', name: 'fontbox', version:'2.0.6'
+    compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.1'
     compile group: 'jep', name: 'jep', version:'2.4.1'
     compile group: 'org.freemarker', name: 'freemarker', version:'2.3.26-incubating'
     compile group: 'org.jdom', name: 'jdom2', version:'2.0.6'
     compile group: 'xalan', name: 'xalan', version:'2.7.2'
     compile group: 'net.sourceforge.argparse4j', name: 'argparse4j', version: '0.7.0'
-    compile group: 'net.sourceforge.pcgen', name: 'PCGen-base', version:'1.0.83'
-    compile group: 'net.sourceforge.pcgen', name: 'PCGen-Formula', version:'1.0.101'
+    compile group: 'org.mozilla', name: 'rhino', version:'1.7.7.1'
+
+    gradleLint.ignore('unused-dependency') {
+	// Eclipse requires this to be in the standard path for some unknown reason.
+	compile group: 'org.xmlunit', name: 'xmlunit-core', version:'2.4.0'
+	compile group: 'org.xmlunit', name: 'xmlunit-legacy', version:'2.4.0'
+        compile group: 'net.sourceforge.pcgen', name: 'PCGen-base', version:'1.0.114'
+        compile group: 'net.sourceforge.pcgen', name: 'PCGen-Formula', version:'1.0.134'
+        compile group: 'xml-apis', name: 'xml-apis', version:'1.3.04'
+    }
 
     compileOnly group: 'org.jetbrains', name: 'annotations', version:'15.0'
     compileOnly group: 'com.yuvimasory', name: 'orange-extensions', version: '1.3.0'
@@ -159,6 +173,7 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version:'4.12'
     testCompile group: 'org.hamcrest', name: 'hamcrest-core', version: '1.3'
     testCompile group: 'org.hamcrest', name: 'hamcrest-library', version: '1.3'
+    testCompile group: 'org.xmlunit', name: 'xmlunit-matchers', version:'2.4.0'
 
     itestCompile sourceSets.main.output
     itestCompile configurations.testCompile
@@ -166,7 +181,6 @@ dependencies {
 
     itestRuntime configurations.testRuntime
 
-    slowtestCompile group: 'xmlunit', name: 'xmlunit', version:'1.6'
     slowtestCompile sourceSets.main.output
     slowtestCompile configurations.testCompile
     slowtestCompile sourceSets.test.output
@@ -176,7 +190,7 @@ dependencies {
     findbugs 'com.google.code.findbugs:findbugs:3.0.1'
     findbugs configurations.findbugsPlugins.dependencies
 
-    findbugsPlugins 'com.mebigfatguy.fb-contrib:fb-contrib:7.0.2'
+    findbugsPlugins 'com.mebigfatguy.fb-contrib:fb-contrib:7.0.3'
 }
 
 ant.importBuild 'build-gradle.xml'
@@ -270,7 +284,7 @@ test {
     exclude 'pcgen/testsupport/**'
 }
 
-task itest(type: Test, dependsOn: [jar, 'buildNsis']) {
+task itest(type: Test, dependsOn: [jar]) {
     testClassesDirs = sourceSets.itest.output.classesDirs
     classpath = sourceSets.itest.runtimeClasspath
     systemProperties['jar.path'] = jar.archivePath
@@ -326,7 +340,7 @@ task all(dependsOn: ['build', 'slowtest', 'javadoc', 'buildNsis', 'allReports'])
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.0'
+    gradleVersion = '4.0.2'
 }
 
 allprojects {
@@ -340,6 +354,24 @@ allprojects {
             events 'failed', 'skipped'
         }
     }
+}
+
+dependencyUpdates.resolutionStrategy = {
+  componentSelection { rules ->
+    rules.all { ComponentSelection selection ->
+      if (['atlassian'].any { qualifier ->
+        selection.candidate.version ==~ /(?i).*[.-]${qualifier}[.\d-]*/
+      }) {
+        selection.reject('unofficial release')
+      }
+      if (selection.candidate.version == '2.0.2' && selection.candidate.name == 'xml-apis') {
+	selection.reject('older than current')
+      }
+      if (selection.candidate.version == '2.24' && selection.candidate.name == 'jep') {
+	selection.reject('older than current')
+      }
+    }
+  }
 }
 
 apply from: 'code/gradle/autobuild.gradle'

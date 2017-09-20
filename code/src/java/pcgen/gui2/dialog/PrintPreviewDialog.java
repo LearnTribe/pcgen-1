@@ -1,5 +1,4 @@
 /*
- * PrintPreviewDialog.java
  * Copyright 2011 Connor Petty <cpmeister@users.sourceforge.net>
  * 
  * This library is free software; you can redistribute it and/or
@@ -81,7 +80,6 @@ import pcgen.util.fop.FopTask;
 
 /**
  * Dialog to allow the preview of character export.
- *
  */
 @SuppressWarnings("serial")
 public final class PrintPreviewDialog extends JDialog implements ActionListener

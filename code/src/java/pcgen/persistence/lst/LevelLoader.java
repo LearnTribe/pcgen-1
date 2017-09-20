@@ -1,5 +1,4 @@
 /*
- * LevelLoader.java
  * Copyright 2002 (C) James Dempsey
  *
  * This library is free software; you can redistribute it and/or
@@ -64,9 +63,9 @@ public final class LevelLoader
 		if (inputLine.startsWith("XPTABLE:"))
 		{
 			String value = inputLine.substring(8);
-			if (value.indexOf("\t") >= 0)
+			if (value.indexOf('\t') >= 0)
 			{
-				value = value.substring(0, value.indexOf("\t"));
+				value = value.substring(0, value.indexOf('\t'));
 			}
 			value = value.trim();
 			if (value.equals(""))

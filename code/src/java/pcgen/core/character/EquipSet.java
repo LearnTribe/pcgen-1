@@ -1,5 +1,4 @@
 /*
- *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -73,7 +72,7 @@ import pcgen.util.Logging;
 public final class EquipSet implements Comparable<EquipSet>, Cloneable
 {
 	/** The root path of the default equipment set. */
-	public static String DEFAULT_SET_PATH = "0.1";
+	public static final String DEFAULT_SET_PATH = "0.1";
 	
 	private Equipment eq_item;
 	private Float qty = new Float(1);
@@ -409,7 +408,7 @@ public final class EquipSet implements Comparable<EquipSet>, Cloneable
 	 * @return A new equip set, identical to this one.
 	 */
 	@Override
-	public Object clone()
+	public EquipSet clone()
 	{
 		EquipSet eqSet = null;
 

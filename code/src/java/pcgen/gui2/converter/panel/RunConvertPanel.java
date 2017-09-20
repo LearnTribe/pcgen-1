@@ -1,5 +1,4 @@
 /*
- * RunConvertPanel.java
  * Copyright 2009 (C) James Dempsey
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 
 package pcgen.gui2.converter.panel;
@@ -36,7 +33,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -300,7 +296,7 @@ public class RunConvertPanel extends ConvertSubPanel implements Observer, Conver
 		Graphics g = statusField.getGraphics();
 		FontMetrics fm = g.getFontMetrics();
 		String message =
-				(filename == null || filename.length() == 0) ? ""
+				(filename == null || filename.isEmpty()) ? ""
 					: "Converting " + filename;
 		int width = fm.stringWidth(message);
 		if (width >= statusField.getWidth())
@@ -315,7 +311,7 @@ public class RunConvertPanel extends ConvertSubPanel implements Observer, Conver
 
 	public void addMessage(String message)
 	{
-		if (currFilename.length() > 0 && !currFilename.equals(lastNotifiedFilename))
+		if (!currFilename.isEmpty() && !currFilename.equals(lastNotifiedFilename))
 		{
 			getMessageArea().append("\n" + currFilename + "\n");
 			lastNotifiedFilename = currFilename;

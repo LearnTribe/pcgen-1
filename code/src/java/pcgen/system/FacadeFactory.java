@@ -1,5 +1,4 @@
 /*
- * FacadeFactory.java
  * Copyright 2010 Connor Petty <cpmeister@users.sourceforge.net>
  * 
  * This library is free software; you can redistribute it and/or
@@ -66,6 +65,12 @@ public class FacadeFactory
 	private static Map<String, CampaignFacade> campaignMap;
 	private static Map<GameModeFacade, DefaultListFacade<CampaignFacade>> campaignListMap = null;
 	private static final CampaignInfoFactory campInfoFactory = new Gui2CampaignInfoFactory();
+
+
+
+	private FacadeFactory()
+	{
+	}
 
 	static void initialize()
 	{

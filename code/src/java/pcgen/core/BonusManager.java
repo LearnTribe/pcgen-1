@@ -1,7 +1,6 @@
 /*
  * BonusManager
  * Copyright 2009 (c) Tom Parker <thpr@users.sourceforge.net>
- * derived from PlayerCharacter.java
  * Copyright 2001 (C) Bryan McRoberts <merton_monk@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -288,7 +287,7 @@ public class BonusManager
 
 			if (typedBonusNameInfo.startsWith(prefix))
 			{
-				final int typeIndex = typedBonusNameInfo.indexOf(":");
+				final int typeIndex = typedBonusNameInfo.indexOf(':');
 				if (typeIndex > 0)
 				{
 					return (fullyQualifedBonusType.substring(typeIndex + 1)); // use aKey to get

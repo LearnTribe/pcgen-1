@@ -1,5 +1,4 @@
 /*
- * RollInfo.java
  * Copyright 2001 (C) Bryan McRoberts <merton_monk@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -326,7 +325,7 @@ public final class RollInfo
 			buf.append(times);
 		}
 
-		buf.append("d").append(sides);
+		buf.append('d').append(sides);
 
 		while (keepList != null) // let break work
 		{
@@ -378,7 +377,7 @@ public final class RollInfo
 
 			if ((p > 0) && (i == times))
 			{
-				buf.append("\\").append(p);
+				buf.append('\\').append(p);
 
 				break;
 			}
@@ -404,13 +403,13 @@ public final class RollInfo
 
 			if ((p > 0) && (i == times))
 			{
-				buf.append("/").append((times - p));
+				buf.append('/').append((times - p));
 
 				break;
 			}
 
 			// Finally, we have a list
-			buf.append("|");
+			buf.append('|');
 
 			boolean first = true;
 
@@ -427,7 +426,7 @@ public final class RollInfo
 				}
 				else
 				{
-					buf.append(",");
+					buf.append(',');
 				}
 
 				buf.append(i + 1);
@@ -436,31 +435,31 @@ public final class RollInfo
 
 		if (rerollBelow != Integer.MIN_VALUE)
 		{
-			buf.append("m").append(rerollBelow);
+			buf.append('m').append(rerollBelow);
 		}
 
 		if (rerollAbove != Integer.MAX_VALUE)
 		{
-			buf.append("M").append(rerollAbove);
+			buf.append('M').append(rerollAbove);
 		}
 
 		if (modifier > 0)
 		{
-			buf.append("+").append(modifier);
+			buf.append('+').append(modifier);
 		}
 		else if (modifier < 0)
 		{
-			buf.append("-").append(-modifier);
+			buf.append('-').append(-modifier);
 		}
 
 		if (totalFloor != Integer.MIN_VALUE)
 		{
-			buf.append("t").append(totalFloor);
+			buf.append('t').append(totalFloor);
 		}
 
 		if (totalCeiling != Integer.MAX_VALUE)
 		{
-			buf.append("T").append(totalCeiling);
+			buf.append('T').append(totalCeiling);
 		}
 
 		return buf.toString();

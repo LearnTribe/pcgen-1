@@ -1,5 +1,4 @@
 /*
- *
  * Copyright 2004 (C) Chris Ward <frugal@purplewombat.co.uk>
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -48,12 +47,12 @@ public final class MessageType {
 
     // Prevent subclasses from overriding Object.equals
     @Override
-	public final boolean equals(final Object that) {
+	public boolean equals(final Object that) {
         return super.equals(that);
     }
 
     @Override
-	public final int hashCode() {
+	public int hashCode() {
         return super.hashCode();
     }
 

@@ -1,5 +1,4 @@
 /*
- * RaceMigration.java
  * Copyright 2014 (C) James Dempsey <jdempsey@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -36,6 +35,12 @@ import pcgen.core.system.MigrationRule.ObjectType;
 public final class RaceMigration
 {
 	private static Map<int[], List<MigrationRule>> raceChangesForVer = new HashMap<>();
+
+
+
+	private RaceMigration()
+	{
+	}
 
 	/**
 	 * Find the new race key to replace the provided one.

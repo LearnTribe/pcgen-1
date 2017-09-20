@@ -355,7 +355,7 @@ public abstract class AbstractListContext
 		protected static class CDOMShell extends CDOMObject
 		{
 			@Override
-			public CDOMObject clone() throws CloneNotSupportedException
+			public CDOMShell clone() throws CloneNotSupportedException
 			{
 				throw new CloneNotSupportedException();
 			}
@@ -487,7 +487,7 @@ public abstract class AbstractListContext
 				CDOMReference<? extends CDOMList<T>> swl)
 		{
 			MapToList<T, AssociatedPrereqObject> map = new TreeMapToList<>(
-                    CDOMObjectUtilities.CDOM_SORTER);
+					CDOMObjectUtilities::compareKeys);
 			OwnerURI lo = new OwnerURI(extractURI, owner);
 			Set<CDOMObject> added = positiveMasterMap
 					.getTertiaryKeySet(swl, lo);
@@ -500,7 +500,7 @@ public abstract class AbstractListContext
 				}
 			}
 			MapToList<T, AssociatedPrereqObject> rmap = new TreeMapToList<>(
-                    CDOMObjectUtilities.CDOM_SORTER);
+					CDOMObjectUtilities::compareKeys);
 			Set<CDOMObject> removed = negativeMasterMap
 					.getTertiaryKeySet(swl, lo);
 			for (CDOMObject lw : removed)
@@ -762,8 +762,8 @@ public abstract class AbstractListContext
 					newapo.addAllPrerequisites(apo.getPrerequisiteList());
 					for (AssociationKey assocKey : apo.getAssociationKeys())
 					{
-						if (assocKey != AssociationKey.TOKEN
-								&& assocKey != AssociationKey.OWNER)
+						if ((assocKey != AssociationKey.TOKEN)
+								&& (assocKey != AssociationKey.OWNER))
 						{
 							newapo.setAssociation(assocKey, apo
 									.getAssociation(assocKey));

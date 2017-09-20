@@ -27,8 +27,12 @@ import pcgen.cdom.enumeration.StringKey;
 import pcgen.core.PlayerCharacter;
 import pcgen.core.SettingsHandler;
 
-public class OutputNameFormatting
+public final class OutputNameFormatting
 {
+
+	private OutputNameFormatting()
+	{
+	}
 
 	public static String parseOutputName(CDOMObject po, PlayerCharacter aPC)
 	{
@@ -85,7 +89,7 @@ public class OutputNameFormatting
 			}
 			else
 			{
-				result.append(val.toString());
+				result.append(val);
 			}
 	
 			lastIndex = subIndex + 1;

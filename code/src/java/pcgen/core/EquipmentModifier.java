@@ -1,5 +1,4 @@
 /*
- * EquipmentModifier.java
  * Copyright 2001 (C) Greg Bingleman <byngl@hotmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -23,6 +22,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import pcgen.base.formula.Formula;
+import pcgen.base.formula.base.VarScoped;
 import pcgen.base.lang.StringUtil;
 import pcgen.cdom.base.CDOMObject;
 import pcgen.cdom.base.Constants;
@@ -44,7 +44,7 @@ import pcgen.util.Delta;
 /**
  * Definition and games rules for an equipment modifier.
  */
-public final class EquipmentModifier extends PObject implements Comparable<Object>, EquipModFacade
+public final class EquipmentModifier extends PObject implements Comparable<Object>, EquipModFacade, Cloneable
 {
 	private static final String PERCENT_CHOICE_PATTERN = Pattern
 								.quote(Constants.LST_PERCENT_CHOICE);
@@ -304,5 +304,24 @@ public final class EquipmentModifier extends PObject implements Comparable<Objec
 	{
 		List<Type> trueTypeList = getTrueTypeList(true);
 		return StringUtil.join(trueTypeList, ".");
+	}
+
+	@Override
+	public String getLocalScopeName()
+	{
+		return "EQUIPMENT.PART";
+	}
+
+	private VarScoped variableParent;
+
+	public void setVariableParent(VarScoped vs)
+	{
+		variableParent = vs;
+	}
+
+	@Override
+	public VarScoped getVariableParent()
+	{
+		return variableParent;
 	}
 }

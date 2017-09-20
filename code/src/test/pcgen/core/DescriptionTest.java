@@ -1,5 +1,4 @@
 /*
- * DescriptionTest.java
  *
  * Copyright 2006 (C) Aaron Divinsky <boomer70@yahoo.com>
  *
@@ -231,8 +230,8 @@ public class DescriptionTest extends AbstractCharacterTestCase
 
 		AbilityCategory category = AbilityCategory.FEAT;
 
-		CNAbility cna = pcgenFinalize(dummy, "Associated 1", pc, category);
-		pcgenFinalize(dummy, "Associated 2", pc, category);
+		CNAbility cna = finalizeTest(dummy, "Associated 1", pc, category);
+		finalizeTest(dummy, "Associated 2", pc, category);
 		assertEquals("2 test  ", desc.getDescription(pc, wrappedDummy));
 
 		desc.addVariable("%CHOICE");

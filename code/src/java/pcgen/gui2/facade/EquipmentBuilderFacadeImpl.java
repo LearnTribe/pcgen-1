@@ -1,5 +1,4 @@
 /*
- * EquipmentBuilderFacadeImpl.java
  * Copyright 2013 (C) James Dempsey <jdempsey@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.gui2.facade;
 
@@ -207,11 +204,11 @@ public class EquipmentBuilderFacadeImpl implements EquipmentBuilderFacade
 		// Replace illegal characters in old name
 		oldName = oldName.replaceAll(";:\\|,", "@");
 
-		if (!oldName.toString().toUpperCase()
-			.startsWith(Constants.GENERIC_ITEM))
+		if (!oldName.toUpperCase()
+		            .startsWith(Constants.GENERIC_ITEM))
 		{
 			equip.addToListFor(ListKey.SPECIAL_PROPERTIES,
-				SpecialProperty.createFromLst(oldName.toString()));
+				SpecialProperty.createFromLst(oldName));
 		}
 		equip.setName(aString);
 		

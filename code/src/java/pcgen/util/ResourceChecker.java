@@ -1,5 +1,4 @@
 /*
- * ResourceChecker.java
  * Copyright 2001 (C) Bryan McRoberts <merton_monk@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -34,6 +33,10 @@ public final class ResourceChecker
 	 */
 	static final String missingLibMsg =
 			LanguageBundle.getString("MissingLibMessage").replace('|', '\n');
+
+	private ResourceChecker()
+	{
+	}
 
 	/**
 	 * Return TRUE if the resource exists in the jar

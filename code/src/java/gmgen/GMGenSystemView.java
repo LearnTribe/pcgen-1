@@ -72,7 +72,7 @@ public class GMGenSystemView extends JPanel implements ChangeListener
 	 *@param  pane      the pane to be displayed.
 	 *@param  index     index to place the pane at
 	 */
-	public void insertPane(String paneName, Component pane, int index)
+	public static void insertPane(String paneName, Component pane, int index)
 	{
 		tabbedPane.insertTab(paneName, null, pane, paneName, index);
 	}
@@ -81,7 +81,7 @@ public class GMGenSystemView extends JPanel implements ChangeListener
 	 *  Places the whole {@code JTabbedPane} on the main frame setting it
 	 *  visible.
 	 */
-	public void showPane()
+	void showPane()
 	{
 		add(tabbedPane, java.awt.BorderLayout.CENTER);
 	}
@@ -94,6 +94,7 @@ public class GMGenSystemView extends JPanel implements ChangeListener
     @Override
 	public void stateChanged(ChangeEvent e)
 	{
+		// defaults to empty
 	}
 
 	/**

@@ -1,5 +1,4 @@
 /*
- * AbilityLoader.java
  * Copyright 2001 (C) Bryan McRoberts <merton_monk@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -15,10 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- * this code was moved and changed from FeatLoader.java
- *
- *
  */
 package pcgen.persistence.lst;
 
@@ -85,7 +80,7 @@ public class AbilityLoader extends LstObjectFileLoader<Ability>
 	@Override
 	protected Ability getObjectKeyed(LoadContext context, String aKey)
 	{
-		if (aKey == null || aKey.isEmpty())
+		if ((aKey == null) || aKey.isEmpty())
 		{
 			return null;
 		}
@@ -94,7 +89,7 @@ public class AbilityLoader extends LstObjectFileLoader<Ability>
 		String abilityKey;
 
 		String[] parts = aKey.split("\\|");
-		if (parts.length == 2 && parts[0].startsWith("CATEGORY="))
+		if ((parts.length == 2) && parts[0].startsWith("CATEGORY="))
 		{
 			abilityCatName = parts[0].substring(9);
 			abilityKey = parts[1];

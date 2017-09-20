@@ -27,8 +27,12 @@ import pcgen.cdom.inst.EquipmentHead;
 import pcgen.core.Equipment;
 import pcgen.core.EquipmentModifier;
 
-public class EqModAttachment
+public final class EqModAttachment
 {
+
+	private EqModAttachment()
+	{
+	}
 
 	public static void finishEquipment(Equipment eq)
 	{

@@ -26,15 +26,18 @@ import pcgen.cdom.identifier.SpellSchool;
 import pcgen.core.Globals;
 import pcgen.core.PCClass;
 import pcgen.core.PlayerCharacter;
-import pcgen.core.SpellProhibitor;
 import pcgen.core.character.CharacterSpell;
 import pcgen.core.spell.Spell;
 
-public class SpellCountCalc
+public final class SpellCountCalc
 {
 
+	private SpellCountCalc()
+	{
+	}
+
 	public static int memorizedSpellForLevelBook(PlayerCharacter pc, PCClass cl, int aLevel,
-			String bookName)
+	                                             String bookName)
 	{
 		final List<CharacterSpell> aList =
 				pc.getCharacterSpells(cl, null, bookName, aLevel);

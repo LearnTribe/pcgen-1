@@ -22,8 +22,12 @@ import pcgen.cdom.enumeration.ObjectKey;
 import pcgen.core.PObject;
 
 
-public class DescriptionFormatting
+public final class DescriptionFormatting
 {
+
+	private DescriptionFormatting()
+	{
+	}
 
 	public static String piWrapDesc(PObject cdo, String desc, boolean useHeader)
 	{

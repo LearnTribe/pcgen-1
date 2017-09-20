@@ -77,15 +77,14 @@ public class EncounterModel extends DefaultListModel
 	}
 
 	/**
-	 * Sets the {@code Array} of <code>PlayerCharacters</code>.
+	 * Sets the {@code Array} of {@code PlayerCharacters}.
 	 * @param len the number of characters being created.
 	 */
 	public void setPCs(int len)
 	{
-		int x;
 		PCs = (PlayerCharacter[]) Array.newInstance(PlayerCharacter.class, len);
 
-		for (x = 0; x < len; x++)
+		for (int x = 0; x < len; x++)
 		{
 			PCs[x] = new PlayerCharacter();
 		}
@@ -107,11 +106,8 @@ public class EncounterModel extends DefaultListModel
 	 */
 	private static float mCRtoPL(float x)
 	{
-		float iReturn = 0;
 
-		iReturn = (x < 1) ? x : (float) Math.exp((x - 1) / 2);
-
-		return iReturn;
+		return (x < 1) ? x : (float) Math.exp((x - 1) / 2);
 	}
 
 	/**

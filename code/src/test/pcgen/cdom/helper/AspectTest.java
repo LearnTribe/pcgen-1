@@ -1,5 +1,4 @@
 /*
- * AspectTest.java
  * Copyright 2008 (C) James Dempsey
  *
  * This library is free software; you can redistribute it and/or
@@ -136,7 +135,7 @@ public class AspectTest extends AbstractCharacterTestCase
 		assertEquals("", aspect.getAspectText(pc, buildMap(pobj, AbilityCategory.FEAT, Nature.NORMAL)));
 		AbilityCategory category = AbilityCategory.FEAT;
 
-		CNAbility cna = pcgenFinalize(pobj, "Foo", pc, category);
+		CNAbility cna = finalizeTest(pobj, "Foo", pc, category);
 		assertEquals("Foo", aspect.getAspectText(pc, Collections.singletonList(cna)));
 	}
 
@@ -192,8 +191,8 @@ public class AspectTest extends AbstractCharacterTestCase
 		aspect.addVariable("TestVar");
 		assertEquals("0 test ", aspect.getAspectText(pc, buildMap(dummy, AbilityCategory.FEAT, Nature.NORMAL)));
 
-		CNAbility cna = pcgenFinalize(dummy, "Associated 1", pc, AbilityCategory.FEAT);
-		pcgenFinalize(dummy, "Associated 2", pc, AbilityCategory.FEAT);
+		CNAbility cna = finalizeTest(dummy, "Associated 1", pc, AbilityCategory.FEAT);
+		finalizeTest(dummy, "Associated 2", pc, AbilityCategory.FEAT);
 		assertEquals("2 test ", aspect.getAspectText(pc, Collections.singletonList(cna)));
 
 		aspect.addVariable("%LIST");
@@ -201,8 +200,7 @@ public class AspectTest extends AbstractCharacterTestCase
 			"2 test Associated 1 and Associated 2", aspect
 				.getAspectText(pc, Collections.singletonList(cna)));
 
-		pcgenFinalize(dummy, "Associated 3", pc, AbilityCategory.FEAT);
-
+		finalizeTest(dummy, "Associated 3", pc, AbilityCategory.FEAT);
 		aspect.addVariable("%LIST");
 		assertEquals("Replacement of %LIST failed",
 			"2 test Associated 1, Associated 2, Associated 3", aspect

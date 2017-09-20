@@ -19,7 +19,6 @@
 package pcgen.gui2.tabs.bio;
 
 import java.awt.Color;
-import java.awt.SystemColor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -46,7 +45,7 @@ class ImagePreviewer extends JComponent
 
 	public void setImage(File file)
 	{
-		if (null == file || !file.exists())
+		if (file == null || !file.exists())
 		{
 			image = null;
 			return;
@@ -76,7 +75,7 @@ class ImagePreviewer extends JComponent
 		final int textX = getFontHeightHint(g);
 		final int textY = SIZE - getFontHeightHint(g);
 
-		if (null != image)
+		if (image != null)
 		{
 			final int width = image.getWidth(null);
 			final int height = image.getHeight(null);
@@ -90,9 +89,9 @@ class ImagePreviewer extends JComponent
 			// the values are visible against most possible image backgrounds.
 			final String dim = width + " x " + height;
 
-			g.setColor(SystemColor.text);
+			g.setColor(Color.black);
 			g.drawString(dim, textX, textY);
-			g.setColor(SystemColor.textText);
+			g.setColor(Color.white);
 			g.drawString(dim, textX - 1, textX - 1);
 		}
 		else

@@ -21,8 +21,12 @@ import pcgen.cdom.base.CDOMObject;
 import pcgen.cdom.enumeration.ListKey;
 import pcgen.core.PCStat;
 
-public class NonAbilityDisplay
+public final class NonAbilityDisplay
 {
+
+	private NonAbilityDisplay()
+	{
+	}
 
 	/**
 	 * Returns true if the given PCStat is not an ability as locked in the given

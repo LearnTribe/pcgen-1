@@ -1,5 +1,4 @@
 /*
- * NoteItem.java
  * Copyright 2002 (C) Bryan McRoberts <merton_monk@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -124,7 +123,7 @@ public final class NoteItem implements NoteFacade, Cloneable
 	}
 
 	@Override
-	protected NoteItem clone()
+	public NoteItem clone()
 	{
 		try
 		{

@@ -1,5 +1,4 @@
 /*
- *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -43,8 +42,12 @@ import pcgen.core.Skill;
  * 
  */
 
-public class ChooserUtilities
+public final class ChooserUtilities
 {
+	private ChooserUtilities()
+	{
+	}
+
 	/**
 	 * Deal with CHOOSE tags. The actual items the choice will be made from are
 	 * based on the choiceString, as applied to current character. Choices

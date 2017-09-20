@@ -1,5 +1,4 @@
 /*
- * PCClassLoader.java
  * Copyright 2001 (C) Bryan McRoberts <merton_monk@yahoo.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -61,7 +60,7 @@ public final class PCClassLoader extends LstObjectFileLoader<PCClass>
 
 			if (lstLine.startsWith("SUBCLASS:"))
 			{
-				int tabLoc = lstLine.indexOf("\t");
+				int tabLoc = lstLine.indexOf('\t');
 				if (tabLoc == -1)
 				{
 					Logging.errorPrint("Expected SUBCLASS to have "
@@ -107,7 +106,7 @@ public final class PCClassLoader extends LstObjectFileLoader<PCClass>
 
 			if (lstLine.startsWith("SUBSTITUTIONCLASS:"))
 			{
-				int tabLoc = lstLine.indexOf("\t");
+				int tabLoc = lstLine.indexOf('\t');
 				String name;
 				String restOfLine;
 				if (tabLoc > 0)

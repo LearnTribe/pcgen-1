@@ -1,5 +1,4 @@
 /*
- * PostLevelUpDialog.java
  * Copyright James Dempsey, 2012
  *
  * This library is free software; you can redistribute it and/or
@@ -15,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *
  */
 package pcgen.gui2.dialog;
 
@@ -31,8 +28,6 @@ import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.awt.Font;
-import java.awt.FontMetrics;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -145,13 +140,7 @@ public final class PostLevelUpDialog extends JDialog implements ActionListener
 
 		};
 		table.setCellSelectionEnabled(false);
-		
-		Font curFont = table.getFont();
-		FontMetrics ftMetrics = table.getFontMetrics(curFont);
-		int ftHeight = ftMetrics.getHeight();
-		table.setRowHeight(ftHeight);
-		//table.setRowHeight(new JSpinner().getPreferredSize().height);
-		
+		table.setRowHeight(new JSpinner().getPreferredSize().height);
 		JTableHeader header = table.getTableHeader();
 		header.setReorderingAllowed(false);
 

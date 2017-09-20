@@ -1,5 +1,4 @@
 /*
- * DebugDialog.java
  * Copyright 2011 Connor Petty <cpmeister@users.sourceforge.net>
  * 
  * This library is free software; you can redistribute it and/or
@@ -253,8 +252,8 @@ public class DebugDialog extends JDialog
 
 		private String getCurrentIndexedLine(int index)
 		{
-			int startIndex = logText.getText().lastIndexOf("\n", index) + 1;
-			int endIndex = logText.getText().indexOf("\n", index);
+			int startIndex = logText.getText().lastIndexOf('\n', index) + 1;
+			int endIndex = logText.getText().indexOf('\n', index);
 			String line = "";
 			if (startIndex >= 0 && endIndex >= startIndex)
 			{
