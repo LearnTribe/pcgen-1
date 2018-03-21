@@ -35,12 +35,14 @@ EQUIPMENT:pfscs_equip.lst
 # needed for Gorge of Gluttons
 EQUIPMENT:@/pathfinder/paizo/roleplaying_game/advanced_race_guide/arg_equip_arms_armor.lst|(INCLUDE:Dogslicer)|!PRECAMPAIGN:1,INCLUDES=Advanced Race Guide
 WEAPONPROF:@/pathfinder/paizo/roleplaying_game/advanced_race_guide/arg_profs_weapon.lst|(INCLUDE:Dogslicer)|!PRECAMPAIGN:1,INCLUDES=Advanced Race Guide
-EQUIPMOD:@/pathfinder/paizo/roleplaying_game/ultimate_combat/uc_equipmods.lst|(INCLUDE:FRAGILE)|!PRECAMPAIGN:1,INCLUDES=Ultimate Combat
+EQUIPMOD:@/pathfinder/paizo/roleplaying_game/ultimate_combat/uc_equipmods.lst|(INCLUDE:Special Quality ~ Fragile)|!PRECAMPAIGN:1,INCLUDES=Ultimate Combat
 
 # needed for Skill Specialization
 ABILITYCATEGORY:@/pathfinder/paizo/campaign_setting/pathfinder_society_field_guide/pfsfg_abilitycategories_skillspecialization.lst|!PRECAMPAIGN:1,INCLUDES=Pathfinder Society Field Guide
 ABILITY:@/pathfinder/paizo/campaign_setting/pathfinder_society_field_guide/pfsfg_abilities_skillspecialization.lst|!PRECAMPAIGN:1,INCLUDES=Pathfinder Society Field Guide
 
+# needed for Cornered Fury
+ABILITY:@/pathfinder/paizo/roleplaying_game/advanced_race_guide/arg_abilities_race.lst|(INCLUDE:CATEGORY=Special Ability,Cornered Fury)|!PRECAMPAIGN:1,INCLUDES=Advanced Race Guide
 
 PCC:scenarios/season_0/pfscs_S0.pcc
 PCC:scenarios/season_1/pfscs_S1.pcc

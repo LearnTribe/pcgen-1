@@ -22,13 +22,13 @@ package pcgen.core.prereq;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-import pcgen.base.util.WrappedMapSet;
 import pcgen.cdom.base.CDOMObject;
 import pcgen.cdom.base.CDOMReference;
 import pcgen.cdom.base.ChooseInformation;
@@ -72,6 +72,7 @@ public final class PrerequisiteUtilities
 	 * @param includeHeader Whether to wrap the generated string in html tags.
 	 * @return An HTML representation of whether a set of PreRequisites passed for a given PC and Source.
 	 */
+	//TODO All uses of this miss PRE REQ
 	public static String preReqHTMLStringsForList(
 		final PlayerCharacter aPC,
 		final CDOMObject aObj,
@@ -369,7 +370,7 @@ public final class PrerequisiteUtilities
 		int numMatches = 0;
 		for (String s : assocs)
 		{
-			if (subKey.equalsIgnoreCase(s))
+			if (subKey.equalsIgnoreCase(s) || s.endsWith("|"+subKey))
 			{
 				numMatches++;
 			}
@@ -381,7 +382,7 @@ public final class PrerequisiteUtilities
 	{
 		for (String s : assocs)
 		{
-			if (subKey.equalsIgnoreCase(s))
+			if (subKey.equalsIgnoreCase(s) || s.endsWith("|"+subKey))
 			{
 				return true;
 			}
@@ -479,7 +480,7 @@ public final class PrerequisiteUtilities
 		final PlayerCharacter character,
 		String categoryName)
 	{
-		final Set<Ability> abilityList = new WrappedMapSet<>(IdentityHashMap.class);
+		final Set<Ability> abilityList = Collections.newSetFromMap(new IdentityHashMap<>());
 		if (character != null)
 		{
 			AbilityCategory cat = SettingsHandler.getGame().getAbilityCategory(categoryName);
